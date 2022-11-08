@@ -8,7 +8,7 @@ import sensors
 NOTIFY_INTERVAL = 1 * 60
 NOTIFY_THRESHOLD = 3
 NOTIFY_DELAY = 15
-KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+KEY = "xxxxxxxxxxxxxx"
 
 sen = sensors.SoilTemperatureSensor()
 
@@ -30,12 +30,12 @@ def main() -> None:
             send_pushnotification(f"Temperature is {value:0.1f}°C")
             last_notify_time = datetime.datetime.now()
 
-        if value > max_value:
+        if value > max_value+0.1:
             max_value = value
-            print(f"New max value: {max_value}")
-        if value < min_value:
+            print(f"New max value: {max_value: 0.1f}")
+        if value < min_value-0.1:
             min_value = value
-            print(f"New min value: {min_value}")
+            print(f"New min value: {min_value: 0.1f}")
 
         time.sleep(1)
 
@@ -47,3 +47,5 @@ def send_pushnotification(msg: str) -> None:
 
 if __name__ == "__main__":
     main()
+
+
