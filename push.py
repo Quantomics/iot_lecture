@@ -42,7 +42,7 @@ def main() -> None:
 
 def send_pushnotification(msg: str) -> None:
     # send to simplepush.io
-    requests.post(f"https://api.simplepush.io/send/", data={"title": "Temperature warning", "msg": msg, "key": KEY})
+    requests.post(f"https://api.simplepush.io/send", data={"title": "Temperature warning", "msg": msg, "key": KEY})
 
 
 if __name__ == "__main__":
