@@ -12,9 +12,6 @@ KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 sen = sensors.SoilTemperatureSensor()
 
-def getvalue() -> int:
-    return 100
-
 
 def main() -> None:
     initial_value = sen.read()
@@ -50,18 +47,3 @@ def send_pushnotification(msg: str) -> None:
 
 if __name__ == "__main__":
     main()
-
-
-
-        time.sleep(1)
-
-
-def send_pushnotification(msg: str) -> None:
-    # send to simplepush.io
-    requests.post(f"https://api.simplepush.io/send/", data={"title": "Temperature warning", "msg": msg, "key": KEY})
-
-
-if __name__ == "__main__":
-    main()
-
-
