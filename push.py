@@ -17,7 +17,7 @@ def main() -> None:
     max_value = initial_value
     min_value = initial_value
 
-    # initialize last notify time as many years ago so that the first time the script runs, it will notify
+    # initialize last notify time to reflect initial no-notify period
     last_notify_time = datetime.datetime.now() - datetime.timedelta(seconds=NOTIFY_INTERVAL - NOTIFY_DELAY)
 
     while True:
