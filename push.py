@@ -6,7 +6,7 @@ import sensors
 
 # only notify once in 5 minutes
 NOTIFY_INTERVAL = 1 * 60
-NOTIFY_THRESHOLD = 3
+NOTIFY_THRESHOLD = 30
 NOTIFY_DELAY = 15
 KEY = "xxxxxxxxxxxxxx"
 
@@ -26,7 +26,7 @@ def main() -> None:
 
         print(f"Current value: {value:0.1f}, max: {max_value:0.1f}, min: {min_value:0.1f}, at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         # notify if the value is above the threshold and the last notify time is more than 5 minutes ago
-        if value > max_value + NOTIFY_THRESHOLD and (datetime.datetime.now() - last_notify_time).total_seconds() > NOTIFY_INTERVAL:
+        if value > NOTIFY_THRESHOLD and (datetime.datetime.now() - last_notify_time).total_seconds() > NOTIFY_INTERVAL:
             send_pushnotification(f"Temperature is {value:0.1f}°C")
             last_notify_time = datetime.datetime.now()
 
