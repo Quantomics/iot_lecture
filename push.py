@@ -4,11 +4,10 @@ import datetime
 import requests
 import sensors
 
-# only notify once in 5 minutes
-NOTIFY_INTERVAL = 1 * 60
-NOTIFY_THRESHOLD = 30
-NOTIFY_DELAY = 15
-KEY = "xxxxxxxxxxxxxx"
+NOTIFY_INTERVAL = 1 * 60  # only notify once in a minute
+NOTIFY_THRESHOLD = 30  # above it then notify
+NOTIFY_DELAY = 15  # initial no-notify period
+KEY = "xxxxxxxxxxxxxx"  # NEED TO EDIT THIS!
 
 sen = sensors.SoilTemperatureSensor()
 
@@ -25,7 +24,7 @@ def main() -> None:
         value = sen.read()
 
         print(f"Current value: {value:0.1f}, max: {max_value:0.1f}, min: {min_value:0.1f}, at {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-        # notify if the value is above the threshold and the last notify time is more than 5 minutes ago
+        # notify if the value is above the threshold and the last notify time is more than a certain interval ago
         if value > NOTIFY_THRESHOLD and (datetime.datetime.now() - last_notify_time).total_seconds() > NOTIFY_INTERVAL:
             send_pushnotification(f"Temperature is {value:0.1f}°C")
             last_notify_time = datetime.datetime.now()
