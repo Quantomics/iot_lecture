@@ -40,7 +40,7 @@ def main() -> None:
 
 
 def send_pushnotification(temp: float) -> None:
-    msg = f"Temperature is {value:0.1f}°C"
+    msg = f"Temperature is {temp:0.1f}°C"
     
     # send to simplepush.io
     requests.post(f"https://api.simplepush.io/send", data={"title": "Temperature warning", "msg": msg, "key": KEY})
